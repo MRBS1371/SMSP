@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>گزارش وزن کاربر</title>
+</head>
+<body>
+    <h1>گزارش وزن کاربر {{ phone_number }}</h1>
+    <table border="1">
+        <tr>
+            <th>تاریخ</th>
+            <th>روز هفته</th>
+            <th>وزن (کیلوگرم)</th>
+            <th>BMI</th>
+            <th>تغییرات نسبت به روز گذشته (کیلوگرم)</th>
+            <th>تغییرات نسبت به میانگین (کیلوگرم)</th>
+            <th>ساعت ارسال</th>
+        </tr>
+        {% for weight in weights %}
+        <tr>
+            <td>{{ weight.date }}</td>
+            <td>{{ weight.weekday }}</td>
+            <td>{{ weight.weight_value }}</td>
+            <td>{{ weight.bmi }}</td>
+            <td>{{ weight.change_from_previous }}</td>
+            <td>{{ weight.change_from_average }}</td>
+            <td>{{ weight.time }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/manage_users">بازگشت به مدیریت کاربران</a>
+</body>
+</html>

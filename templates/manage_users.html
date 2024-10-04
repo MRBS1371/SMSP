@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مدیریت کاربران</title>
+    <script>
+        function confirmDelete() {
+            return confirm('آیا از حذف این کاربر مطمئن هستید؟');
+        }
+    </script>
+</head>
+<body>
+    <h1>مدیریت کاربران</h1>
+    <table border="1">
+        <tr>
+            <th>شناسه</th>
+            <th>شماره تلفن</th>
+            <th>زمان گزارش‌دهی</th>
+            <th>BMI فعلی</th>
+            <th>اولین وزن</th>
+            <th>آخرین وزن</th>
+            <th>میانگین وزن</th>
+            <th>عملیات</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.id }}</td>
+            <td><a href="/weight_report/{{ user.phone_number }}">{{ user.phone_number }}</a></td>
+            <td>{{ user.report_time }}</td>
+            <td>{{ user.current_bmi }}</td>
+            <td>{{ user.first_weight }}</td>
+            <td>{{ user.last_weight }}</td>
+            <td>{{ user.avg_weight }}</td>
+            <td>
+                <a href="/delete_user/{{ user.id }}" onclick="return confirmDelete();">حذف</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="/">بازگشت به صفحه اصلی</a>
+</body>
+</html>
